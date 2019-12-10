@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block title %} 로그인 {% endblock %}
+
+{% block body %}
+
+<div class="text-center">
+    <h3 class="text-center">로그인</h3>
+</div>
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/ko_KR/sdk.js#xfbml=1&version=v5.0&appId=2749351531754616&autoLogAppEvents=1"></script>
+
+
+{% for message in get_flashed_messages() %}
+<div class="alert alert-warning text-center">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    {{ message }}
+</div>
+{% endfor %}
+
+<div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+        <form action="" method="POST" class="text-center">
+            {{ form.hidden_tag() }}
+            <table class="table table-active">
+                {% for field in form.display %}
+                    <tr class="text-center">
+                        <td class="text-center">{{ form[field].label }}</td>
+                        <td class="text-center">
+                            {{ form[field]() }}
+                            {% if form[field].errors %}
+                                {% for e in form[field].errors %}
+                                    <p class="help-block">{{ e }}</p>
+                                {% endfor %}
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+            <input type=submit value="로그인">
+        </form>
+    </div>
+    <div class="col-md-4"></div>
+</div>
+
+<div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4 text-center">
+        <a href="https://kauth.kakao.com/oauth/authorize?client_id={{KAKAO_REST_API_KEY}}&redirect_uri=http://localhost:8080/auth/kakao_oauth_redirect&response_type=code">
+            <img src="/static/images/kakao_account_login_btn_medium_narrow.png" border="0"/>
+        </a>
+
+        <div class="fb-login-button" data-width="" data-size="large" data-button-type="continue_with" data-auto-logout-link="false" data-use-continue-as="false"></div>
+        </a>
+    </div>
+    <div class="col-md-4"></div>
+</div>
+<br/>
+<br/>
+<br/>
+{% endblock %}

@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>Hello, world!</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <!--     Fonts and icons     -->
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+  <!-- Material Kit CSS -->
+  <link href="/static/assets/css/material-dashboard.css?v=2.1.1" rel="stylesheet" />
+</head>
+
+<body>
+  <div class="wrapper ">
+    <div class="sidebar" data-color="azure" data-background-color="white">
+      <!--
+      Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
+
+      Tip 2: you can also add an image using data-image tag
+  -->
+      <div class="logo">
+        <a href="/" class="simple-text logo-mini">
+          서비스 지향 컴퓨팅 및 실습
+        </a>
+        <a href="/" class="simple-text logo-normal">
+          텀 프로젝트
+        </a>
+      </div>
+      <div class="sidebar-wrapper">
+        <ul class="nav">
+          <li class="nav-item {% if nav_menu == 'home'%} active {%endif %} ">
+            <a class="nav-link" href="/">
+              <i class="material-icons">dashboard</i>
+              <p>홈</p>
+            </a>
+          </li>
+          <!-- your sidebar here -->
+          <li class="nav-item {% if nav_menu == 'image'%} active {%endif %}">
+            <a class="nav-link" href="/menus/images">
+              <i class="material-icons">image</i>
+              <p>카카오 이미지 검색결과</p>
+            </a>
+          </li>
+          <li class="nav-item {% if nav_menu == 'books'%} active {%endif %}">
+            <a class="nav-link" href="/menus/books">
+              <i class="material-icons">menu_book</i>
+              <p>카카오 책 검색결과</p>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="main-panel">
+      <!-- Navbar -->
+      <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
+        <div class="container-fluid">
+          <div class="navbar-wrapper">
+            <a class="navbar-brand" href="#pablo">Dashboard</a>
+          </div>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="navbar-toggler-icon icon-bar"></span>
+            <span class="navbar-toggler-icon icon-bar"></span>
+            <span class="navbar-toggler-icon icon-bar"></span>
+          </button>
+          <div class="collapse navbar-collapse justify-content-end">
+            <ul class="navbar-nav">
+              {% if current_user.is_authenticated %}
+              <li>안녕하세요. {{ current_user.name }} 회원님! &nbsp; <img src="{{ kakao_oauth['kakao_thumbnail_image'] }}" border="0"; style="width: 20px; height: 20px;"></li>
+              <li>
+                <a href="/auth/my_page">나의 정보</a>
+              </li>
+
+              <li>
+                <a href="/auth/logout">로그아웃</a>
+              </li>
+
+              {% else %}
+              <li style="margin-right : 1.0em">
+                <a href="/auth/login">로그인</a>
+              </li>
+              <li>
+                <a href="/auth/login">회원가입</a>
+              </li>
+
+              {% endif %}
+              <li class="nav-item">
+                <a class="nav-link" href="#pablo">
+                  <i class="material-icons">notifications</i> Notifications
+                </a>
+              </li>
+              <!-- your navbar here -->
+            </ul>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <!-- End Navbar -->
+      <div class="content">
+        <div class="container-fluid">
+          <!-- your content here -->
+          {% block content %}
+          {% endblock %}
+        </div>
+      </div>
+      <footer class="footer">
+        <div class="container-fluid">
+          <nav class="float-left">
+            <ul>
+              <li>
+                <a href="#">
+                  Creative Tim
+                </a>
+              </li>
+            </ul>
+          </nav>
+          <div class="copyright float-right">
+            &copy;
+            <script>
+              document.write(new Date().getFullYear())
+            </script>, made with <i class="material-icons">favorite</i> by
+            <a href="#" target="_blank">Creative Tim</a> for a better web.
+          </div>
+          <!-- your footer here -->
+        </div>
+      </footer>
+
+    </div>
+  </div>
+</body>
+
+</html>

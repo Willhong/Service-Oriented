@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block title %} 회원 정보 {% endblock %}
+
+{% block body %}
+<div class="text-center">
+    <h3 class="text-center">회원 정보</h3>
+</div>
+{% for message in get_flashed_messages() %}
+<div class="alert alert-warning text-center">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    {{ message }}
+</div>
+{% endfor %}
+
+<div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+        <form method="POST">
+            {{ form.hidden_tag() }}
+            <dl>
+                {% for field in form.display %}
+                    <dt>{{ form[field].label }}</dt>
+                    <dd>{{ form[field](size=62, value=user[field]) }}</dd>
+                    {% if form[field].errors %}
+                      {% for e in form[field].errors %}
+                       <p class="help-block">{{ e }}</p>
+                      {% endfor %}
+                    {% endif %}
+                    <br/>
+                {% endfor %}
+
+                {% if 'nickname' in kakao_oauth %}
+                    <dt><label>카카오 닉네임</label></dt>
+                    <dd>{{ kakao_oauth['nickname'] }}</dd>
+                    <br/>
+                {%  endif %}
+
+                {% if 'id' in kakao_oauth %}
+                    <dt><label>카카오 아이디</label></dt>
+                    <dd>{{ kakao_oauth['id'] }}</dd>
+                    <br/>
+                {%  endif %}
+
+                {% if 'kakao_thumbnail_image' in kakao_oauth %}
+                    <dt><label>카카오 썸네일 이미지</label></dt>
+                    <dd><img src="{{ kakao_oauth['kakao_thumbnail_image'] }}" border="0"/></dd>
+                    <br/>
+                {%  endif %}
+
+                {% if 'kakao_profile_image' in kakao_oauth %}
+                    <dt><label>카카오 프로파일 이미지</label></dt>
+                    <dd><img src="{{ kakao_oauth['kakao_profile_image'] }}" border="0"/></dd>
+                    <br/>
+                {%  endif %}
+            </dl>
+            <p>
+            <input type=submit value="수정">
+        </form>
+    </div>
+    <div class="col-md-4"></div>
+</div>
+
+<br/>
+<br/>
+<br/>
+{% endblock %}

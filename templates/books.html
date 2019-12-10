@@ -1,0 +1,40 @@
+{% extends 'template.html' %}
+
+{% block content %}
+    <table class="'table table-bordered">
+        <thead>
+            <tr>
+                <td>번호</td>
+                <td>제목</td>
+                <td>저자</td>
+                <td>isbn</td>
+                <td>가격</td>
+            </tr>
+        </thead>
+        <tbody>
+        {% for book in books %}
+            {% if loop.first %}
+        <tr>
+        <td>{{loop.index}}</td>
+        <td style="color:red">{{book['title']}}</td>
+        <td>{{book['authors']}}</td>
+        <td>{{book['isbn']}}</td>
+        <td>{{book['price']}}</td>
+
+        </tr>
+        {% else %}
+        <tr>
+        <td>{{loop.index}}</td>
+        <td>{{book['title']}}</td>
+        <td>{{book['authors']}}</td>
+        <td>{{book['isbn']}}</td>
+        <td>{{book['price']}}</td>
+
+        </tr>
+
+        {% endif %}
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+
