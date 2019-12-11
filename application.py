@@ -113,5 +113,5 @@ def before_request():
 
 if __name__ == "__main__":
     logging.info("Flask Web Server Started")
-    application.debug=True
+    application.debug=Truegi
     application.run(host="0.0.0.0", port="8080")
