@@ -51,6 +51,12 @@
               <p>카카오 책 검색결과</p>
             </a>
           </li>
+        <li class="nav-item {% if nav_menu == 'test'%} active {%endif %}">
+            <a class="nav-link" href="/menus/test">
+              <i class="material-icons">note</i>
+              <p>테스트페이지</p>
+            </a>
+          </li>
         </ul>
       </div>
     </div>
@@ -69,7 +75,7 @@
           </button>
           <div class="collapse navbar-collapse justify-content-end">
             <ul class="navbar-nav">
-              {% if current_user.is_authenticated %}
+              {% if current_user.is_authenticated %}git
               <li>안녕하세요. {{ current_user.name }} 회원님! &nbsp; <img src="{{ kakao_oauth['kakao_thumbnail_image'] }}" border="0"; style="width: 20px; height: 20px;"></li>
               <li>
                 <a href="/auth/my_page">나의 정보</a>

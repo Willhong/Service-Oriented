@@ -1,5 +1,5 @@
 import requests
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 from flask import Blueprint
 
 from keys import KAKAO_ADMIN_KEY
@@ -28,28 +28,42 @@ def menus_science():
     return 'welcome science news {0}'.format("Hkt")
 
 
-@menus_blueprint.route('/images')
+@menus_blueprint.route('/images', methods = ['POST', 'GET'])
 def images():
-    res1 = requests.get(
-        url=KAKAO_BASE_URL + "/v2/search/image?query=아이유",
-        headers=headers
-    )
-    if res1.status_code == 200:
-        images = res1.json()
+    if request.method == 'POST':
+        tests = request.form['search']
+        res1 = requests.get(
+            url=KAKAO_BASE_URL + "/v2/search/image?query="+tests,
+            headers=headers
+        )
+        if res1.status_code == 200:
+            images = res1.json()
 
-        for image in images['documents']:
-            print("{0}".format(image['image_url']))
+            for image in images['documents']:
+                print("{0}".format(image['image_url']))
+        else:
+            print("Error {0} ".format(res1.status_code))
+
     else:
-        print("Error {0} ".format(res1.status_code))
+        res1 = requests.get(
+            url=KAKAO_BASE_URL + "/v2/search/image?query=아이유",
+            headers=headers
+        )
+        if res1.status_code == 200:
+            images = res1.json()
+
+            for image in images['documents']:
+                print("{0}".format(image['image_url']))
+        else:
+            print("Error {0} ".format(res1.status_code))
 
     return render_template(
-        'images.html', image=images, nav_menu="image" ,kakao_oauth=kakao_oauth
+        'images.html', image=images, nav_menu="image", kakao_oauth=kakao_oauth, tests=test
     )
 
 
 @menus_blueprint.route('/books')
 def books():
-
     res1 = requests.get(
         url=KAKAO_BASE_URL + "/v3/search/book?target=authors&query=정태윤",
         headers=headers
@@ -58,10 +72,20 @@ def books():
         books = res1.json()
 
         for book in books['documents']:
-            print("{0:50s} - {1:>20s}".format(book['title'] ,str(book['authors'])))
+            print("{0:50s} - {1:>20s}".format(book['title'], str(book['authors'])))
     else:
         print("Error {0} ".format(res1.status_code))
 
     return render_template(
-        'books.html', books=books['documents'], nav_menu="book" , kakao_oauth=kakao_oauth
+        'books.html', books=books['documents'], nav_menu="book", kakao_oauth=kakao_oauth
     )
+
+
+@menus_blueprint.route('/test', methods = ['POST', 'GET'])
+def test():
+    if request.method == 'POST':
+        tests = request.form['search']
+    else:
+        return 'hello test'
+
+    return render_template("test.html", nav_menu="test", test=tests)
