@@ -2967,3 +2967,10 @@ INFO:root:Flask Web Server Started
 WARNING:werkzeug: * Debugger is active!
 INFO:werkzeug: * Debugger PIN: 505-006-647
 INFO:werkzeug: * Running on http://localhost:8080/ (Press CTRL+C to quit)
+INFO:werkzeug: * Detected change in 'C:\\Users\\hbill\\PycharmProjects\\web_service\\application.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:Flask Web Server Started
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 505-006-647
+INFO:werkzeug: * Running on http://localhost:8080/ (Press CTRL+C to quit)
+INFO:werkzeug: * Detected change in 'C:\\Users\\hbill\\PycharmProjects\\web_service\\application.py', reloading

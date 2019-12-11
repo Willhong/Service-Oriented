@@ -2,7 +2,7 @@ import os
 from flask import Flask,render_template, redirect, url_for, request
 import logging
 
-import database
+from database import base
 from database.base import User
 from views.menus import menus_blueprint
 from views.auth import auth_blueprint, kakao_oauth
@@ -34,7 +34,7 @@ logging.basicConfig(filename='test.log', level=logging.DEBUG)
 
 @login_manager.user_loader
 def load_user(user_id):
-    q = database.base.db_session.query(User).filter(User.id == user_id)
+    q = base.db_session.query(User).filter(User.id == user_id)
     user = q.first()
 
     if user is not None:
@@ -114,4 +114,4 @@ def before_request():
 if __name__ == "__main__":
     logging.info("Flask Web Server Started")
     application.debug=True
-    application.run(host="localhost", port="8080")
+    application.run(host="0.0.0.0", port="8080")
