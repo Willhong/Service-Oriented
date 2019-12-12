@@ -99,19 +99,22 @@ def test():
             travels = res.json()
 
             for travel in travels["response"]['body']['items']['item']:
-                w = travel['addr1']
-                print(w.split(' ')[0] + " " + w.split(' ')[1] + "의 관광지")
+                try:
+                    w = travel['addr1']
+                except KeyError:
+                    w = '서울특별시 모르군'
+                #print(w.split(' ')[0] + " " + w.split(' ')[1] + "의 관광지")
                 do = w.split(' ')[0]
                 # print(do)
                 ADDRESS_CODE = str(whatdo(do))
                 # print("{0}의 지역코드 = {1}".format(do,ADDRESS_CODE))
-                try:
-                    print("제목 : {0}, 주소 : {1}, 사진 : {2}".format(travel['title'], travel['addr1'], travel['firstimage']))
-                except KeyError:
-                    print("제목 : {0}, 주소 : {1}, 사진 : 없음".format(travel['title'], travel['addr1']))
+                #try:
+                #    print("제목 : {0}, 주소 : {1}, 사진 : {2}".format(travel['title'], travel['addr1'], travel['firstimage']))
+                #except KeyError:
+                #    print("제목 : {0}, 주소 : {1}, 사진 : 없음".format(travel['title'], travel['addr1']))
                 # pprint.pprint("{0}".format(travels))
 
-                print(w.split(' ')[0] + " " + w.split(' ')[1] + "의 음식점")
+                #print(w.split(' ')[0] + " " + w.split(' ')[1] + "의 음식점")
 
                 res1 = requests.get(
                     url=TRAVEL_BASE_URL + ADDRESS_CODE + TRAVEL_URL
@@ -133,8 +136,9 @@ def test():
                         b = businesss
                         # pprint.pprint(b)
                         if b['indsLclsNm'] == '음식':
-                            print(b['bizesNm'] + "," + "주소 : " + b['lnoAdr'])
-                            render_template("travel.html",business=business["body"]['items'])
+                            #print(b['bizesNm'] + "," + "주소 : " + b['lnoAdr'])
+                            print(" ")
+
 
 
 

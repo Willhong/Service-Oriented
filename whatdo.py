@@ -19,18 +19,22 @@ def whatdo(do):
         add_code = 41
     if do == '강원도':
         add_code = 42
-    if do == '충청북도':
+    if do == '충청북도' or do =='충북':
         add_code = 43
-    if do == '충청남도':
+    if do == '충청남도' or do =='충남':
         add_code = 44
     if do == '전라북도' or do =='전북':
         add_code = 45
-    if do == '전라남도':
+    if do == '전라남도' or do =='전남':
         add_code = 46
     if do == '경상북도' or do =='경북':
         add_code = 47
     if do == '경상남도' or do =='경남':
         add_code = 48
-    if do == '제주특별자치도':
+    if do == '제주특별자치도' or do =='제주':
         add_code = 50
-    return add_code
+
+    try:
+        return add_code
+    except UnboundLocalError:
+        return 50
