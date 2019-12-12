@@ -27,9 +27,9 @@ def whatdo(do):
         add_code = 45
     if do == '전라남도':
         add_code = 46
-    if do == '경상북도':
+    if do == '경상북도' or do =='경북':
         add_code = 47
-    if do == '경상남도':
+    if do == '경상남도' or do =='경남':
         add_code = 48
     if do == '제주특별자치도':
         add_code = 50
