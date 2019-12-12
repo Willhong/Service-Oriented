@@ -1,0 +1,36 @@
+{% extends 'template.html' %}
+
+{% block content %}
+    <table class="'table table-bordered">
+        <thead>
+            <tr>
+                <td>번호</td>
+                <td>사진</td>
+                <td>관광지 이름</td>
+                <td>주변 상점 정보</td>
+                <td>가격</td>
+            </tr>
+        </thead>
+        <tbody>
+        {% for travel in travels %}
+
+        <tr>
+        <td>{{loop.index}}</td>
+        <td><img src="{{travel['firstimage']}}" alt="사진없음" width="600" height="400"></td>
+        <td>{{travel['title']}}<br>주소 : {{travel['addr1']}}</td>
+        <td>{% for businesss in business %}
+            {%if businesss['indsLclsNm'] =='음식' %}
+        <br>{{businesss['bizesNm']}}<br> 주소 : {{businesss['lnoAdr']}}
+            {% endif %}
+            {% endfor%}
+        </td>
+        <td>  </td>
+
+        </tr>
+
+
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+
