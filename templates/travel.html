@@ -25,7 +25,7 @@
         <td>{% for bus in z[count.value] %}
 
 
-            <br>{{z[count.value][ccount.value]}}<br>주소 : {{v[count.value][ccount.value]}}<br>
+            <br><a href="https://www.google.com/search?q={{z[count.value][ccount.value]}}">{{z[count.value][ccount.value]}}</a><br>주소 : {{v[count.value][ccount.value]}}<br>
             {% set ccount.value = ccount.value + 1 %}
 
 

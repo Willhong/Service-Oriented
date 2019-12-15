@@ -162,19 +162,8 @@ def test():
 
 
 
-
-
-
-
-
-
-
-
-
-
-
     else:
-        return 'hello travel'
+        return '대시보드의 검색을 이용해주세요'
 
     return render_template("travel.html", nav_menu="travel", travels=travels["response"]['body']['items']['item'],
                            address=address["body"]['items'], business=business["body"]['items'],z=z,v=v)
