@@ -65,7 +65,7 @@ def images():
             print("Error {0} ".format(res1.status_code))
 
     return render_template(
-        'images.html', image=images, nav_menu="image", kakao_oauth=kakao_oauth, squery=squery
+        'images.html', image=images, nav_menu="image", kakao_oauth=kakao_oauth,
     )
 
 
@@ -95,6 +95,10 @@ def test():
         res = requests.get(
             url=BASE_URL + "/searchKeyword?ServiceKey=" + TRAVEL_KEY + "&keyword=" + KEYWORD + PARAM
         )
+
+        z={}
+        v={}
+        i=0
         if res.status_code == 200:
             travels = res.json()
 
@@ -102,7 +106,8 @@ def test():
                 try:
                     w = travel['addr1']
                 except KeyError:
-                    w = '서울특별시 모르군'
+                    w = '서울특별시 '
+                    print("error")
                 #print(w.split(' ')[0] + " " + w.split(' ')[1] + "의 관광지")
                 do = w.split(' ')[0]
                 # print(do)
@@ -132,12 +137,36 @@ def test():
 
                 if res2.status_code == 200:
                     business = res2.json()
+                    x = []
+                    y = []
                     for businesss in business["body"]['items']:
                         b = businesss
                         # pprint.pprint(b)
                         if b['indsLclsNm'] == '음식':
                             #print(b['bizesNm'] + "," + "주소 : " + b['lnoAdr'])
-                            print(" ")
+                            # z.append({i:(b['lnoAdr'],b['bizesNm'])})
+
+                            x.append(b['lnoAdr'])
+                            y.append(b['bizesNm'])
+                            # print("x={0}".format(x))
+                            # print("y={0}".format(y))
+                    z[i]=y
+                    v[i]=x
+                    del x,y
+
+                    i = i + 1
+
+            print(z)
+            print(v)
+
+
+
+
+
+
+
+
+
 
 
 
@@ -148,4 +177,4 @@ def test():
         return 'hello travel'
 
     return render_template("travel.html", nav_menu="travel", travels=travels["response"]['body']['items']['item'],
-                           address=address["body"]['items'], business=business["body"]['items'])
+                           address=address["body"]['items'], business=business["body"]['items'],z=z,v=v)
