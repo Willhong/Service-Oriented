@@ -17,7 +17,7 @@ def whatdo(do):
         add_code = 36
     if do == '경기도' or do =='경기':
         add_code = 41
-    if do == '강원도':
+    if do == '강원도' or do=='강원':
         add_code = 42
     if do == '충청북도' or do =='충북':
         add_code = 43
