@@ -106,7 +106,7 @@ def test():
                 try:
                     w = travel['addr1']
                 except KeyError:
-                    w = '서울특별시 '
+                    w = '서울특별시 모르군 모르동'
                     print("error")
                 #print(w.split(' ')[0] + " " + w.split(' ')[1] + "의 관광지")
                 do = w.split(' ')[0]
@@ -119,7 +119,7 @@ def test():
                 #    print("제목 : {0}, 주소 : {1}, 사진 : 없음".format(travel['title'], travel['addr1']))
                 # pprint.pprint("{0}".format(travels))
 
-                print(w.split(' ')[0] + " " + w.split(' ')[1] + "의 음식점")
+                print(w.split(' ')[0] + " " + w.split(' ')[1] + w.split(' ')[2] + "의 음식점")
 
                 res1 = requests.get(
                     url=TRAVEL_BASE_URL + ADDRESS_CODE + TRAVEL_URL
@@ -129,12 +129,16 @@ def test():
 
                     print(address)
                     for addresss in address["body"]['items']:
-                        if addresss['signguNm'] == w.split(' ')[1]:
-                            print("{0}의 지역코드 : {1}".format(w.split(' ')[1], addresss['signguCd']))
-                            temp=addresss['signguCd']
+                        if addresss['signguNm'] == w.split(' ')[1]+' '+w.split(' ')[2]:
+                            print("{0}의 지역코드 : {1}".format(w.split(' ')[1] +' '+ w.split(' ')[2], addresss['signguCd']))
                             break
-                            print(" ")
-                    print("{0}의 지역코드 : {1}".format(w.split(' ')[1], addresss['signguCd']))
+                        if addresss['signguNm'] == w.split(' ')[1]:
+                            print(
+                                "{0}의 지역코드 : {1}".format(w.split(' ')[1], addresss['signguCd']))
+                            break
+                        print(" ")
+
+                    print("{0}의 지역코드 : {1}".format(w.split(' ')[1] + w.split(' ')[2] , addresss['signguCd']))
                     res2 = requests.get(
                         url=BUSINESS_URL + addresss['signguCd'] + TRAVEL_URL
                     )
