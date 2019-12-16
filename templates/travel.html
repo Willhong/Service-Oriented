@@ -20,7 +20,7 @@
     <tr>
         <td>{{loop.index}}</td>
         <td><img src="{{travel['firstimage']}}" alt="사진없음" width="390" height="260"></td>
-        <td><a href="https://www.google.com/search?q={{travel['title']}}">{{travel['title']}}<br>주소 : {{travel['addr1']}}</td>
+        <td><a href="https://www.google.com/search?q={{travel['title']}}"></a>{{travel['title']}}<br>주소 : {{travel['addr1']}}</td>
         {% set ccount = namespace(value=0) %}
         <td>{% for bus in z[count.value] %}
 
