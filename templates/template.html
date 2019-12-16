@@ -2,9 +2,9 @@
 <html lang="en">
 
 <head>
-  <title>Hello, world!</title>
+  <title>금강산도 식후경</title>
   <!-- Required meta tags -->
-  <meta charset="utf-8">
+    <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <!--     Fonts and icons     -->
@@ -27,11 +27,9 @@
   -->
       <div class="logo">
         <a href="/" class="simple-text logo-mini">
-          서비스 지향 컴퓨팅 및 실습
+          <img src="https://www.conteenew.com/data/file/artwork/74/67aa247ac23f463e041c562aae31ca9a.png" width="200", height="100">
         </a>
-        <a href="/" class="simple-text logo-normal">
-          텀 프로젝트
-        </a>
+
       </div>
       <div class="sidebar-wrapper">
         <ul class="nav">
@@ -42,22 +40,23 @@
             </a>
           </li>
           <!-- your sidebar here -->
-          <li class="nav-item {% if nav_menu == 'image'%} active {%endif %}">
-            <a class="nav-link" href="/menus/images">
-              <i class="material-icons">image</i>
-              <p>카카오 이미지 검색결과</p>
-            </a>
-          </li>
-          <li class="nav-item {% if nav_menu == 'books'%} active {%endif %}">
-            <a class="nav-link" href="/menus/books">
-              <i class="material-icons">menu_book</i>
-              <p>카카오 책 검색결과</p>
-            </a>
-          </li>
+
+{#          <li class="nav-item {% if nav_menu == 'books'%} active {%endif %}">#}
+{#            <a class="nav-link" href="/menus/books">#}
+{#              <i class="material-icons">menu_book</i>#}
+{#              <p>카카오 책 검색결과</p>#}
+{#            </a>#}
+{#          </li>#}
         <li class="nav-item {% if nav_menu == 'travel'%} active {%endif %}">
             <a class="nav-link" href="/menus/travel">
               <i class="material-icons">beach_access</i>
               <p>여행지</p>
+            </a>
+          </li>
+        <li class="nav-item {% if nav_menu == 'image'%} active {%endif %}">
+            <a class="nav-link" href="/menus/images">
+              <i class="material-icons">image</i>
+              <p>카카오 이미지 검색결과</p>
             </a>
           </li>
         </ul>
