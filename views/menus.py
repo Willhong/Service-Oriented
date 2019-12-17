@@ -19,7 +19,6 @@ app = Flask(__name__)
 
 menus_blueprint = Blueprint('menus', __name__)
 
-
 @menus_blueprint.route('/main')
 def menus_main():
     return 'welcome news {0}'.format("Hkt")

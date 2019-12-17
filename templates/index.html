@@ -72,4 +72,95 @@
 #}
 
 
+<div class="container mt-3">
+<div id="myCarousel" class="carousel slide">
+
+  <!-- Indicators -->
+  <ul class="carousel-indicators">
+    <li class="item1 active"></li>
+    <li class="item2"></li>
+    <li class="item3"></li>
+  </ul>
+
+  <!-- The slideshow -->
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <a href="#" onclick="goPage('국립공원')"><img src="http://tong.visitkorea.or.kr/cms/resource/47/2014047_image2_1.jpg" alt="Los Angeles" width="1100" height="500"></a>
+    </div>
+    <div class="carousel-item">
+        <a href="#" onclick="goPage('폭포')"><img src="http://tong.visitkorea.or.kr/cms/resource/89/2363489_image2_1.jpg" alt="Chicago" width="1100" height="500"></a>
+    </div>
+    <div class="carousel-item">
+        <a href="#" onclick="goPage('동굴')"><img src="http://tong.visitkorea.or.kr/cms/resource/80/176480_image2_1.jpg" alt="New York" width="1100" height="500"></a>
+    </div>
+  </div>
+
+  <!-- Left and right controls -->
+  <a class="carousel-control-prev" href="#myCarousel">
+    <span class="carousel-control-prev-icon"></span>
+  </a>
+  <a class="carousel-control-next" href="#myCarousel">
+    <span class="carousel-control-next-icon"></span>
+  </a>
+</div>
+</div>
+
+<script>
+$(document).ready(function(){
+  // Activate Carousel
+  $("#myCarousel").carousel();
+
+  // Enable Carousel Indicators
+  $(".item1").click(function(){
+    $("#myCarousel").carousel(0);
+  });
+  $(".item2").click(function(){
+    $("#myCarousel").carousel(1);
+  });
+  $(".item3").click(function(){
+    $("#myCarousel").carousel(2);
+  });
+
+  // Enable Carousel Controls
+  $(".carousel-control-prev").click(function(){
+    $("#myCarousel").carousel("prev");
+  });
+  $(".carousel-control-next").click(function(){
+    $("#myCarousel").carousel("next");
+  });
+});
+    function goPage(content) {
+        post("/menus/travel", {"travel": content})
+    };
+
+    function post(path, params, method='post') {
+
+      // The rest of this code assumes you are not using a library.
+      // It can be made less wordy if you use one.
+      const form = document.createElement('form');
+      form.method = method;
+      form.action = path;
+
+      for (const key in params) {
+        if (params.hasOwnProperty(key)) {
+          const hiddenField = document.createElement('input');
+          hiddenField.type = 'hidden';
+          hiddenField.name = key;
+          hiddenField.value = params[key];
+
+          form.appendChild(hiddenField);
+        }
+      }
+
+      document.body.appendChild(form);
+      form.submit();
+    }
+
+</script>
+
+
+
+
+
+
 {% endblock %}
