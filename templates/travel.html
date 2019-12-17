@@ -30,10 +30,18 @@
 
     <tr>
         <td>{{loop.index}}</td>
+        {%if i2==0 %}
         <td><img src="{{travel['firstimage']}}" alt="사진없음" width="390" height="260"></td>
         <td><a href="https://www.google.com/search?q={{travel['title']}}">{{travel['title']}}</a><br>주소 :
             {{travel['addr1']}}
         </td>
+        {% else %}
+        <td><img src="{{pic}}" alt="사진없음" width="390" height="260"></td>
+        <td><a href="https://www.google.com/search?q={{w2}}">{{w2}}</a><br>주소 :
+            {{travel['addr1']}}
+        </td>
+
+        {% endif %}
         {% set ccount = namespace(value=0) %}
         <td>{% for bus in z[count.value] %}
 
@@ -49,8 +57,9 @@
         <td></td>
 
     </tr>
-
-
+    {%if i2==1 %}
+    {% break %}
+    {% endif %}
     {% endfor %}
     </tbody>
 </table>

@@ -99,6 +99,7 @@ def test():
         z={}
         v={}
         i=0
+        i2=0
         if res.status_code == 200:
             travels = res.json()
 
@@ -110,6 +111,9 @@ def test():
                     print("error")
                 except TypeError:
                     w= travels["response"]['body']['items']['item']['addr1']
+                    w2= travels["response"]['body']['items']['item']['title']
+                    pic=travels["response"]['body']['items']['item']['firstimage']
+                    i2=1
                 #print(w.split(' ')[0] + " " + w.split(' ')[1] + "의 관광지")
                 do = w.split(' ')[0]
                 # print(do)
@@ -165,6 +169,8 @@ def test():
                     del x,y
                     print(i)
                     i = i + 1
+                if i2 == 1:
+                    break
 
 
 
@@ -174,5 +180,10 @@ def test():
         redirect=1
         return render_template("travel.html", nav_menu = "travel", alert = alert, redirect=redirect)
 
-    return render_template("travel.html", nav_menu="travel", travels=travels["response"]['body']['items']['item'],
-                           address=address["body"]['items'], business=business["body"]['items'], z=z, v=v, redirect=redirect)
+    if i2==1:
+        return render_template("travel.html", nav_menu="travel", travels=travels["response"]['body']['items']['item'],
+                           address=address["body"]['items'], business=business["body"]['items'], z=z, v=v, redirect=redirect,i2=i2,pic=pic)
+    else:
+        return render_template("travel.html", nav_menu="travel", travels=travels["response"]['body']['items']['item'],
+                               address=address["body"]['items'], business=business["body"]['items'], z=z, v=v,
+                               redirect=redirect, i2=i2)

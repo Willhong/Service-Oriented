@@ -31,7 +31,7 @@ login_manager.init_app(application)
 
 logging.basicConfig(filename='test.log', level=logging.DEBUG)
 
-
+application.jinja_env.add_extension('jinja2.ext.loopcontrols')
 @login_manager.user_loader
 def load_user(user_id):
     q = base.db_session.query(User).filter(User.id == user_id)
@@ -114,4 +114,4 @@ def before_request():
 if __name__ == "__main__":
     logging.info("Flask Web Server Started")
     application.debug=True
-    application.run(host="0.0.0.0", port="8080")
+    application.run(host="0.0.0.0", port="5000")
