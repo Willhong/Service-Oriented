@@ -108,6 +108,8 @@ def test():
                 except KeyError:
                     w = '서울특별시 모르군 모르동'
                     print("error")
+                except TypeError:
+                    w= travels["response"]['body']['items']['item']['addr1']
                 #print(w.split(' ')[0] + " " + w.split(' ')[1] + "의 관광지")
                 do = w.split(' ')[0]
                 # print(do)
