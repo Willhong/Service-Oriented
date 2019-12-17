@@ -91,6 +91,7 @@ def books():
 @menus_blueprint.route('/travel', methods=['POST', 'GET'])
 def test():
     if request.method == 'POST':
+        redirect=0
         KEYWORD = request.form['travel']
         res = requests.get(
             url=BASE_URL + "/searchKeyword?ServiceKey=" + TRAVEL_KEY + "&keyword=" + KEYWORD + PARAM
@@ -165,14 +166,12 @@ def test():
                     i = i + 1
 
 
-            # print(z)
-            # print(v)
-
-
 
 
     else:
-        return '대시보드의 검색을 이용해주세요'
+        alert = '대시보드의 검색을 이용해주세요'
+        redirect=1
+        return render_template("travel.html", nav_menu = "travel", alert = alert, redirect=redirect)
 
     return render_template("travel.html", nav_menu="travel", travels=travels["response"]['body']['items']['item'],
-                           address=address["body"]['items'], business=business["body"]['items'],z=z,v=v)
+                           address=address["body"]['items'], business=business["body"]['items'], z=z, v=v, redirect=redirect)

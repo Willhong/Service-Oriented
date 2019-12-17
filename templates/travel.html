@@ -15,17 +15,31 @@
     </tr>
     </thead>
     <tbody>
+    {%if redirect==1 %}
+    <script>;
+
+    if (confirm('{{alert}}')) {
+        window.location.href = '/';
+    } else {
+        window.location.href = '/';
+    }
+
+    </script>
+    {% endif %}
     {% for travel in travels %}
 
     <tr>
         <td>{{loop.index}}</td>
         <td><img src="{{travel['firstimage']}}" alt="사진없음" width="390" height="260"></td>
-        <td><a href="https://www.google.com/search?q={{travel['title']}}">{{travel['title']}}</a><br>주소 : {{travel['addr1']}}</td>
+        <td><a href="https://www.google.com/search?q={{travel['title']}}">{{travel['title']}}</a><br>주소 :
+            {{travel['addr1']}}
+        </td>
         {% set ccount = namespace(value=0) %}
         <td>{% for bus in z[count.value] %}
 
 
-            <br><a href="https://www.google.com/search?q={{z[count.value][ccount.value]}}">{{z[count.value][ccount.value]}}</a><br>주소 : {{v[count.value][ccount.value]}}<br>
+            <br><a href="https://www.google.com/search?q={{z[count.value][ccount.value]}}">{{z[count.value][ccount.value]}}</a><br>주소
+            : {{v[count.value][ccount.value]}}<br>
             {% set ccount.value = ccount.value + 1 %}
 
 
